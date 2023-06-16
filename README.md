@@ -113,13 +113,13 @@ void rechnung(char customKey, char wert1, char wert2) {
 
 ### Ausgabe:
 
-![Output](file:///Users/basti/Documents/3BHIT/semester 6/syt/EK/output.png?msec=1686905851802)
+![Output](./output.png)
 
 ### Bilder:
 
 ![Schaltplan](./schaltplan.png)
 
-![Schaltung](file:///Users/basti/Documents/3BHIT/semester 6/syt/EK/schaltung.JPG?msec=1686905827795)
+![Schaltung](./schaltung.JPG)
 
 ###
 
