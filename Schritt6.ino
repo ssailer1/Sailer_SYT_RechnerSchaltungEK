@@ -1,0 +1,89 @@
+// Imports
+#include <Keypad.h>
+
+// gibt an wieviel Zeilen/Reihen das Numpad hat
+const byte ROWS = 4;
+const byte COLS = 4;
+
+// Angebenn der auszuwählbaren Möglichkeiten 
+char hexaKeys[ROWS][COLS] = {
+    {'1', '2', '3', 'A'},
+    {'4', '5', '6', 'B'},
+    {'7', '8', '9', 'C'},
+    {'*', '0', '#', 'D'}
+};
+
+// Pins am Arduino
+byte rowPins[ROWS] = {9, 8, 7, 6};
+byte colPins[COLS] = {5, 4, 3, 2};
+
+// Keypad Objekt erstellen
+Keypad customKeypad = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
+
+
+void setup() {
+    // Setup serial monitor
+    Serial.begin(9600);
+}
+
+
+void loop() {
+  //deklaration der Werte
+    char wert1 = '\0';
+    char customKey = '\0';
+    char wert2 = '\0';
+
+    // Eingabe von wert1
+    while (wert1 == '\0') {
+        wert1 = customKeypad.getKey();
+        Serial.print(wert1);
+        delay(50);
+    }
+
+    // Eingabe von Operator (customKey)
+    while (customKey == '\0') {
+        customKey = customKeypad.getKey();
+        Serial.print(customKey);
+        delay(50);
+    }
+
+    // Eingabe von wert2
+    while (wert2 == '\0') {
+        wert2 = customKeypad.getKey();
+        Serial.print(wert2);
+        delay(50);
+    }
+  //aufrufen der Methode rechnung
+    rechnung(customKey, wert1, wert2);
+}
+
+void rechnung(char customKey, char wert1, char wert2) {
+    int ergebnis = 0; //deklaraton und initialisierung von ergebnis
+
+    if (customKey) {
+        //Im Falle des ausgewählten Zeichens A soll addiert werden
+        if (customKey == 'A') {
+            ergebnis = atoi(String(wert1).c_str()) + atoi(String(wert2).c_str());
+            Serial.println("Summe: " + String(ergebnis));
+        }
+        //Im Falle des ausgewählten Zeichens B soll subtrahiert werden
+        else if (customKey == 'B') {
+            ergebnis = atoi(String(wert1).c_str()) - atoi(String(wert2).c_str());
+            Serial.println("Subtraktion: " + String(ergebnis));
+        }
+        //Im Falle des ausgewählten Zeichens C soll dividiert werden
+        else if (customKey == 'C') {
+            ergebnis = atoi(String(wert1).c_str()) / atoi(String(wert2).c_str());
+            Serial.println("Division: " + String(ergebnis));
+        }
+        //Im Falle des ausgewählten Zeichens D soll multipliziert werden
+        else if (customKey == 'D') {
+            ergebnis = atoi(String(wert1).c_str()) * atoi(String(wert2).c_str());
+            Serial.println("Multiplikation: " + String(ergebnis));
+        }
+        //ist es eine weitere Zahl, soll diese wieder ausgegeben werden
+        else {
+            Serial.println(customKey);
+        }
+    }
+}
