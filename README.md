@@ -117,7 +117,7 @@ void rechnung(char customKey, char wert1, char wert2) {
 
 ### Bilder:
 
-![Schaltplan](file:///Users/basti/Documents/3BHIT/semester 6/syt/EK/schaltplan.png?msec=1686905765029)
+![Schaltplan](./schaltplan.png)
 
 ![Schaltung](file:///Users/basti/Documents/3BHIT/semester 6/syt/EK/schaltung.JPG?msec=1686905827795)
 
